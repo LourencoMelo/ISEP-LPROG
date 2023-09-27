@@ -1,0 +1,1 @@
+lerPrecoProduto(fichProduto.xml,4)

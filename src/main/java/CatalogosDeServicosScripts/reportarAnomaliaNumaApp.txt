@@ -1,0 +1,1 @@
+reportarAnomaliaNumaApp(Anomalia teste,Equipamento Apple,Isto e um exemplo de email para reportar uma anomalia,erroApple.png,1190782@isep.ipp.pt)

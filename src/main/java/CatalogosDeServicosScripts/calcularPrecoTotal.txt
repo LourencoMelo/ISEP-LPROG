@@ -1,0 +1,1 @@
+calcularPrecoTotal(fichProduto.xml,4,5)

@@ -1,0 +1,1 @@
+alterarResidenciaCliente(fichMoradaCliente.xml,12,Rua Nova,42,4423-213,Boa Velha)

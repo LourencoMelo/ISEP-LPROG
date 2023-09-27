@@ -1,0 +1,1 @@
+reportarAnomaliaDeComunicacao(Anomalia teste,Comunicacao x,Isto e um exemplo de email para reportar uma anomalia,exemplo.png,1190782@isep.ipp.pt)

@@ -1,0 +1,1 @@
+reportarAnomaliaNumEquipamento(Anomalia teste,Equipamento Frigorifico,Isto e um exemplo de email para reportar uma anomalia,frigo.png,1190782@isep.ipp.pt)

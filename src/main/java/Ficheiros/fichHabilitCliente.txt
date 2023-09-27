@@ -1,0 +1,3 @@
+12;Secundario
+53;Licenciatura
+13;Mestrado

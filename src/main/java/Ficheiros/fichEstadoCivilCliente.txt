@@ -1,0 +1,3 @@
+12;Solteiro
+53;Casado
+15;Divorciado

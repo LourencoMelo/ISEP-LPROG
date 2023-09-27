@@ -1,0 +1,1 @@
+aplicarDescontoRapel(fichProduto.xml,4,5,fichRapelCliente.txt,133,5,10)

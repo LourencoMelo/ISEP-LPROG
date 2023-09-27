@@ -1,0 +1,1 @@
+informaAusenciaFutura(12:04:2021,12:05:2021,FERIAS,Justifico dizendo que esta semana e a unica que o meu pai tem ferias,1190782@isep.ipp.pt)

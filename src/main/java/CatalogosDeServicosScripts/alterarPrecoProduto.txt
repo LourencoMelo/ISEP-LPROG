@@ -1,0 +1,1 @@
+alterarPrecoProduto(fichProduto.xml,5,435)
