@@ -1,0 +1,7 @@
+Este texto tem alguns hellos world mas só este hello world é 
+que tem o hello junto ao world!!!
+
+podemos ter várias linhas com palavras
+
+
+e outras com hello world!!!

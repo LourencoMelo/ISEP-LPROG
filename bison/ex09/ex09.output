@@ -1,0 +1,273 @@
+Grammar
+
+    0 $accept: inicio $end
+
+    1 inicio: %empty
+    2       | inicio DATA HORA NUMERO '\n' expr
+    3       | inicio DATA HORA '\n' expr
+    4       | inicio error
+
+    5 expr: expr cont
+    6     | cont
+
+    7 cont: AULINHA COD_AULA HORA NUMERO NUMERO NOME 'n'
+    8     | AULINHA COD_AULA HORA NUMERO NUMERO 'n'
+    9     | AULINHA HORA NUMERO NUMERO NOME 'n'
+   10     | AULINHA HORA NUMERO NUMERO 'n'
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '\n' (10) 2 3
+    'n' (110) 7 8 9 10
+    error (256) 4
+    DATA <str> (258) 2 3
+    HORA <str> (259) 2 3 7 8 9 10
+    NOME <str> (260) 7 9
+    COD_AULA <str> (261) 7 8
+    NUMERO <inteiro> (262) 2 7 8 9 10
+    AULINHA <str> (263) 7 8 9 10
+
+
+Nonterminals, with rules where they appear
+
+    $accept (11)
+        on left: 0
+    inicio (12)
+        on left: 1 2 3 4
+        on right: 0 2 3 4
+    expr <inteiro> (13)
+        on left: 5 6
+        on right: 2 3 5
+    cont <inteiro> (14)
+        on left: 7 8 9 10
+        on right: 5 6
+
+
+State 0
+
+    0 $accept: . inicio $end
+
+    $default  reduce using rule 1 (inicio)
+
+    inicio  go to state 1
+
+
+State 1
+
+    0 $accept: inicio . $end
+    2 inicio: inicio . DATA HORA NUMERO '\n' expr
+    3       | inicio . DATA HORA '\n' expr
+    4       | inicio . error
+
+    $end   shift, and go to state 2
+    error  shift, and go to state 3
+    DATA   shift, and go to state 4
+
+
+State 2
+
+    0 $accept: inicio $end .
+
+    $default  accept
+
+
+State 3
+
+    4 inicio: inicio error .
+
+    $default  reduce using rule 4 (inicio)
+
+
+State 4
+
+    2 inicio: inicio DATA . HORA NUMERO '\n' expr
+    3       | inicio DATA . HORA '\n' expr
+
+    HORA  shift, and go to state 5
+
+
+State 5
+
+    2 inicio: inicio DATA HORA . NUMERO '\n' expr
+    3       | inicio DATA HORA . '\n' expr
+
+    NUMERO  shift, and go to state 6
+    '\n'    shift, and go to state 7
+
+
+State 6
+
+    2 inicio: inicio DATA HORA NUMERO . '\n' expr
+
+    '\n'  shift, and go to state 8
+
+
+State 7
+
+    3 inicio: inicio DATA HORA '\n' . expr
+
+    AULINHA  shift, and go to state 9
+
+    expr  go to state 10
+    cont  go to state 11
+
+
+State 8
+
+    2 inicio: inicio DATA HORA NUMERO '\n' . expr
+
+    AULINHA  shift, and go to state 9
+
+    expr  go to state 12
+    cont  go to state 11
+
+
+State 9
+
+    7 cont: AULINHA . COD_AULA HORA NUMERO NUMERO NOME 'n'
+    8     | AULINHA . COD_AULA HORA NUMERO NUMERO 'n'
+    9     | AULINHA . HORA NUMERO NUMERO NOME 'n'
+   10     | AULINHA . HORA NUMERO NUMERO 'n'
+
+    HORA      shift, and go to state 13
+    COD_AULA  shift, and go to state 14
+
+
+State 10
+
+    3 inicio: inicio DATA HORA '\n' expr .
+    5 expr: expr . cont
+
+    AULINHA  shift, and go to state 9
+
+    $default  reduce using rule 3 (inicio)
+
+    cont  go to state 15
+
+
+State 11
+
+    6 expr: cont .
+
+    $default  reduce using rule 6 (expr)
+
+
+State 12
+
+    2 inicio: inicio DATA HORA NUMERO '\n' expr .
+    5 expr: expr . cont
+
+    AULINHA  shift, and go to state 9
+
+    $default  reduce using rule 2 (inicio)
+
+    cont  go to state 15
+
+
+State 13
+
+    9 cont: AULINHA HORA . NUMERO NUMERO NOME 'n'
+   10     | AULINHA HORA . NUMERO NUMERO 'n'
+
+    NUMERO  shift, and go to state 16
+
+
+State 14
+
+    7 cont: AULINHA COD_AULA . HORA NUMERO NUMERO NOME 'n'
+    8     | AULINHA COD_AULA . HORA NUMERO NUMERO 'n'
+
+    HORA  shift, and go to state 17
+
+
+State 15
+
+    5 expr: expr cont .
+
+    $default  reduce using rule 5 (expr)
+
+
+State 16
+
+    9 cont: AULINHA HORA NUMERO . NUMERO NOME 'n'
+   10     | AULINHA HORA NUMERO . NUMERO 'n'
+
+    NUMERO  shift, and go to state 18
+
+
+State 17
+
+    7 cont: AULINHA COD_AULA HORA . NUMERO NUMERO NOME 'n'
+    8     | AULINHA COD_AULA HORA . NUMERO NUMERO 'n'
+
+    NUMERO  shift, and go to state 19
+
+
+State 18
+
+    9 cont: AULINHA HORA NUMERO NUMERO . NOME 'n'
+   10     | AULINHA HORA NUMERO NUMERO . 'n'
+
+    NOME  shift, and go to state 20
+    'n'   shift, and go to state 21
+
+
+State 19
+
+    7 cont: AULINHA COD_AULA HORA NUMERO . NUMERO NOME 'n'
+    8     | AULINHA COD_AULA HORA NUMERO . NUMERO 'n'
+
+    NUMERO  shift, and go to state 22
+
+
+State 20
+
+    9 cont: AULINHA HORA NUMERO NUMERO NOME . 'n'
+
+    'n'  shift, and go to state 23
+
+
+State 21
+
+   10 cont: AULINHA HORA NUMERO NUMERO 'n' .
+
+    $default  reduce using rule 10 (cont)
+
+
+State 22
+
+    7 cont: AULINHA COD_AULA HORA NUMERO NUMERO . NOME 'n'
+    8     | AULINHA COD_AULA HORA NUMERO NUMERO . 'n'
+
+    NOME  shift, and go to state 24
+    'n'   shift, and go to state 25
+
+
+State 23
+
+    9 cont: AULINHA HORA NUMERO NUMERO NOME 'n' .
+
+    $default  reduce using rule 9 (cont)
+
+
+State 24
+
+    7 cont: AULINHA COD_AULA HORA NUMERO NUMERO NOME . 'n'
+
+    'n'  shift, and go to state 26
+
+
+State 25
+
+    8 cont: AULINHA COD_AULA HORA NUMERO NUMERO 'n' .
+
+    $default  reduce using rule 8 (cont)
+
+
+State 26
+
+    7 cont: AULINHA COD_AULA HORA NUMERO NUMERO NOME 'n' .
+
+    $default  reduce using rule 7 (cont)
